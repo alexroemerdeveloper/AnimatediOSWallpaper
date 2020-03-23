@@ -9,8 +9,21 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @State private var shiftColors = false
+    
     var body: some View {
-        Text("Hello, World!")
+        ZStack {
+            Image(uiImage: #imageLiteral(resourceName: "maria"))
+                .resizable()
+                .scaledToFill()
+                .hueRotation(.degrees(shiftColors ? 45 : 1600))
+                .animation(Animation.easeInOut(duration: 5).repeatForever(autoreverses: true))
+                .onAppear() {
+                    self.shiftColors.toggle()
+            }
+        }
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
